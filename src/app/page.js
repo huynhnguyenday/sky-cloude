@@ -7,43 +7,64 @@ import HourlyForecast from "@/components/HourlyForecast";
 
 export default function Home() {
   return (
-    <div className="font-dmsans min-h-screen px-8 pb-20 sm:px-20 py-10 bg-[#01012b] text-white">
-      {/* Grid tổng */}
-      <div className="grid grid-rows-[auto_auto_1fr] gap-8">
-        {/* Row 1: Header */}
-        <header className="flex items-center justify-between">
-          <Image src="/logo.svg" alt="Logo" width={200} height={80} />
-          <Units />
-        </header>
-        <h1 className="text-6xl font-bold text-white text-center py-14 font-bricolage">
-          How&apos;s the sky looking today?
-        </h1>
-        {/* Row 2: Search */}
-        <div className="flex justify-center pb-8">
-          <Search />
-        </div>
+    <div className="font-dmsans bg-[#01012b] text-white">
+      <div className="px-8 pb-20 sm:px-20 py-10">
+        {/* Grid tổng */}
+        <div className="space-y-8">
+          {/* Row 1: Header */}
+          <header className="flex items-center justify-between">
+            <Image src="/logo.svg" alt="Logo" width={200} height={80} />
+            <Units />
+          </header>
+          <h1 className="text-6xl font-bold text-white text-center py-14 font-bricolage">
+            How&apos;s the sky looking today?
+          </h1>
+          {/* Search */}
+          <div className="flex justify-center pb-8">
+            <Search />
+          </div>
 
-        {/* Row 3: Main layout */}
-        <div className="grid grid-cols-3 gap-6">
-          {/* Left (col-span-2) */}
-          <div className="col-span-2 grid grid-rows-[2fr_1fr] gap-6">
-            {/* Top */}
+          {/* Row 3: Main layout */}
+          {/* Desktop/Tablet Layout */}
+          <div className="hidden lg:grid grid-cols-3 gap-6">
+            {/* Left (col-span-2) */}
+            <div className="col-span-2 grid grid-rows-[2fr_1fr] gap-6">
+              {/* Top */}
+              <div>
+                <Main />
+              </div>
+              {/* Bottom */}
+              <div className="bg-[#1e1e3f] p-4 rounded-2xl">
+                <DailyForecast />
+              </div>
+            </div>
+
+            {/* Right */}
             <div className="bg-[#1e1e3f] p-4 rounded-2xl">
+              <HourlyForecast />
+            </div>
+          </div>
+
+          {/* Mobile/Tablet Layout */}
+          <div className="lg:hidden space-y-6">
+            {/* Main */}
+            <div>
               <Main />
             </div>
-            {/* Bottom */}
+
+            {/* Daily Forecast */}
             <div className="bg-[#1e1e3f] p-4 rounded-2xl">
               <DailyForecast />
             </div>
-          </div>
 
-          {/* Right */}
-          <div className="bg-[#1e1e3f] p-4 rounded-2xl">
-            <HourlyForecast />
+            {/* Hourly Forecast */}
+            <div className="bg-[#1e1e3f] p-4 rounded-2xl">
+              <HourlyForecast />
+            </div>
           </div>
         </div>
       </div>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
+      <footer className="flex gap-[24px] flex-wrap items-center justify-center py-8">
         {" "}
         <div className="attribution text-center text-sm text-gray-600">
           {" "}

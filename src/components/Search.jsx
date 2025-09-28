@@ -3,7 +3,7 @@
 import { useState } from "react";
 
 export default function Search() {
-  const [isOpen, setIsOpen] = useState(true);
+  const [isOpen, setIsOpen] = useState(false);
   const [searchValue, setSearchValue] = useState("");
 
   const cities = [
