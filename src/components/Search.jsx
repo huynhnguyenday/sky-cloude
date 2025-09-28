@@ -27,7 +27,7 @@ export default function Search() {
           <input
             type="text"
             placeholder="Search for a place..."
-            className="w-xl pl-10 pr-4 py-3 bg-[#1e1e3f] text-white outline-none rounded-xl"
+            className="w-60 sm:w-xl pl-10 px-1 sm:pr-4 py-3 bg-[#1e1e3f] text-white outline-none rounded-xl"
             value={searchValue}
             onChange={(e) => setSearchValue(e.target.value)}
             onFocus={() => setIsOpen(true)}
