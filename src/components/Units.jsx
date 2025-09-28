@@ -15,7 +15,7 @@ export default function Units() {
     <div
       className="relative inline-block text-left"
       onMouseEnter={() => setOpen(true)}
-      onMouseLeave={() => setOpen(true)}
+      onMouseLeave={() => setOpen(false)}
     >
       <button className="flex items-center gap-2 px-3 py-2 bg-[#25253e] rounded-md cursor-pointer hover:bg-[#1e1e3f]">
         <img src="/icon-units.svg" alt="units" className="w-5 h-5" />
