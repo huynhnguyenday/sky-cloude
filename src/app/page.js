@@ -20,7 +20,7 @@ export default function Home() {
             How&apos;s the sky looking today?
           </h1>
           {/* Search */}
-          <div className="flex justify-center pb-8">
+          <div className="flex sm:justify-center sm:pb-8 w-full">
             <Search />
           </div>
 

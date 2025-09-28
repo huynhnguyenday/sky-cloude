@@ -16,9 +16,9 @@ export default function Search() {
   ];
 
   return (
-    <div className="space-y-4">
-      <div className="flex gap-2">
-        <div className="flex-1 relative">
+    <div className="space-y-4 w-full">
+      <div className="flex flex-col sm:flex-row gap-2 w-full sm:justify-center">
+        <div className="relative flex-1 sm:flex-none sm:max-w-xl">
           <img
             src="/icon-search.svg"
             alt="search"
@@ -27,7 +27,7 @@ export default function Search() {
           <input
             type="text"
             placeholder="Search for a place..."
-            className="w-60 sm:w-xl pl-10 px-1 sm:pr-4 py-3 bg-[#1e1e3f] text-white outline-none rounded-xl"
+            className="w-full sm:w-xl pl-10 pr-4 py-3 bg-[#1e1e3f] text-white outline-none rounded-xl"
             value={searchValue}
             onChange={(e) => setSearchValue(e.target.value)}
             onFocus={() => setIsOpen(true)}
@@ -53,7 +53,9 @@ export default function Search() {
             </div>
           )}
         </div>
-        <button className="px-6 py-3 bg-[#475bd6] text-sm cursor-pointer text-white rounded-lg transition-all duration-300 hover:backdrop-blur-lg hover:bg-opacity-80 hover:shadow-lg hover:shadow-blue-500/25 hover:scale-105 hover:bg-gradient-to-r hover:from-bg-[#475bd6] hover:to-bg-[#5366e7]">
+
+        {/* Nút Search */}
+        <button className="w-full sm:w-auto px-6 py-3 bg-[#475bd6] text-sm cursor-pointer text-white rounded-lg transition-all duration-300 hover:backdrop-blur-lg hover:bg-opacity-80 hover:shadow-lg hover:shadow-blue-500/25 hover:scale-105 hover:bg-gradient-to-r hover:from-[#475bd6] hover:to-[#5366e7]">
           Search
         </button>
       </div>
