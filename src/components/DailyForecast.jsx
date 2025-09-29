@@ -10,19 +10,16 @@ export default function DailyForecast() {
         {days.map((day, idx) => (
           <div
             key={idx}
-            className="bg-[#1e1e3f] rounded-xl p-4 flex flex-col items-center border-[1px] border-gray-700"
+            className="bg-[#1e1e3f] rounded-xl p-4 md:p-2 lg:p-4 flex flex-col items-center border-[1px] border-gray-700"
           >
-            {/* Top - Day */}
             <p className="text-lg font-medium text-center">{day}</p>
 
-            {/* Middle - Weather icon */}
             <img
               src="/icon-sunny.webp"
               alt="weather"
               className="w-12 h-12 my-4"
             />
 
-            {/* Bottom - Temps */}
             <div className="flex justify-between w-full text-sm">
               <span className="text-start">25°</span>
               <span className="text-end">22°</span>

@@ -51,7 +51,7 @@ export default function Main() {
         <div className="flex items-center gap-4">
           <img src="/icon-rain.webp" alt="weather icon" className="w-28 h-28" />
           <div className="text-right">
-            <div className="text-9xl font-bold transform -skew-x-12">
+            <div className="text-9xl md:text-8xl font-bold transform -skew-x-12">
               22°
             </div>
           </div>

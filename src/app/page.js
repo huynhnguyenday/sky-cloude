@@ -15,14 +15,13 @@ export default function Home() {
             <Image src="/logo.svg" alt="Logo" width={200} height={80} />
             <Units />
           </header>
-          <h1 className="text-6xl font-bold text-white text-center py-14 font-bricolage">
+          <h1 className="text-6xl font-bold text-white text-center sm:py-14 py-6 font-bricolage">
             How&apos;s the sky looking today?
           </h1>
           <div className="flex sm:justify-center sm:pb-8 w-full">
             <Search />
           </div>
-
-          {/* Desktop/Tablet Layout */}
+          
           {/* Desktop/Tablet Layout */}
           <div className="hidden lg:grid grid-cols-3 gap-6">
             <div className="col-span-2 grid grid-rows-[2fr_1fr] gap-6">
