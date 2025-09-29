@@ -35,7 +35,7 @@ export default function Search() {
           />
 
           {isOpen && (
-            <div className="px-2 absolute top-full left-0 right-0 mt-2 bg-[#25253e] rounded-lg shadow-lg border border-gray-700 z-10 h-[175px] overflow-y-auto custom-scrollbar">
+            <div className="px-2 absolute top-full left-0 right-0 mt-2 bg-[#1e1e3f] rounded-lg shadow-lg border border-gray-700 z-10 h-[175px] overflow-y-auto custom-scrollbar">
               <div className="p-2">
                 {cities.map((city, index) => (
                   <div

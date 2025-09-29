@@ -21,16 +21,16 @@ export default function Main() {
           <div className="mb-2">
             <h1 className="text-2xl font-bold">New York, United States</h1>
           </div>
-          <div className="text-sm opacity-80">
+          <div className="text-base opacity-80">
             <p>Monday, December 23, 2024</p>
           </div>
         </div>
 
         {/* Weather Info */}
         <div className="flex items-center justify-center gap-4">
-          <img src="/icon-rain.webp" alt="weather icon" className="w-16 h-16" />
+          <img src="/icon-rain.webp" alt="weather icon" className="w-20 h-20" />
           <div className="text-center">
-            <div className="text-5xl font-bold transform -skew-x-12">20°</div>
+            <div className="text-7xl font-bold transform -skew-x-12">20°</div>
           </div>
         </div>
       </div>
@@ -49,10 +49,10 @@ export default function Main() {
 
         {/* Right Section - Weather Info */}
         <div className="flex items-center gap-4">
-          <img src="/icon-rain.webp" alt="weather icon" className="w-32 h-32" />
+          <img src="/icon-rain.webp" alt="weather icon" className="w-28 h-28" />
           <div className="text-right">
-            <div className="md:text-9xl sm:text-xl text-5xl transform -skew-x-12">
-              20°
+            <div className="text-9xl font-bold transform -skew-x-12">
+              68°
             </div>
           </div>
         </div>

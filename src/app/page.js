@@ -2,6 +2,7 @@ import Image from "next/image";
 import Units from "@/components/Units";
 import Search from "@/components/Search";
 import Main from "@/components/Main";
+import WeatherDetails from "@/components/WeatherDetails";
 import DailyForecast from "@/components/DailyForecast";
 import HourlyForecast from "@/components/HourlyForecast";
 
@@ -33,6 +34,11 @@ export default function Home() {
               <div>
                 <Main />
               </div>
+
+              <div className="rounded-2xl">
+                <WeatherDetails />
+              </div>
+
               {/* Bottom */}
               <div className="bg-[#1e1e3f] p-4 rounded-2xl">
                 <DailyForecast />
@@ -52,6 +58,11 @@ export default function Home() {
               <Main />
             </div>
 
+            {/* Weather Details */}
+            <div className="rounded-2xl">
+              <WeatherDetails />
+            </div>
+
             {/* Daily Forecast */}
             <div className="bg-[#1e1e3f] p-4 rounded-2xl">
               <DailyForecast />
@@ -65,31 +76,31 @@ export default function Home() {
         </div>
       </div>
       <footer className="flex gap-[24px] flex-wrap items-center justify-center py-8">
-        {" "}
+        
         <div className="attribution text-center text-sm text-gray-600">
-          {" "}
-          Challenge by{" "}
+          
+          Challenge by
           <a
             href="https://www.frontendmentor.io"
             target="_blank"
             rel="noreferrer"
             className="underline"
           >
-            {" "}
-            Frontend Mentor{" "}
-          </a>{" "}
-          . Coded by{" "}
+            
+            Frontend Mentor
+          </a>
+          . Coded by
           <a
             href="https://github.com/huynhnguyenday"
             target="_blank"
             rel="noreferrer"
             className="underline"
           >
-            {" "}
-            Nguyen Huu Huynh{" "}
-          </a>{" "}
-          .{" "}
-        </div>{" "}
+            
+            Nguyen Huu Huynh
+          </a>
+          .
+        </div>
       </footer>
     </div>
   );
