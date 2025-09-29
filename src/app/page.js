@@ -10,9 +10,7 @@ export default function Home() {
   return (
     <div className="font-dmsans bg-[#01012b] text-white">
       <div className="px-8 pb-20 sm:px-20 py-10">
-        {/* Grid tổng */}
         <div className="space-y-8">
-          {/* Row 1: Header */}
           <header className="flex items-center justify-between">
             <Image src="/logo.svg" alt="Logo" width={200} height={80} />
             <Units />
@@ -20,32 +18,27 @@ export default function Home() {
           <h1 className="text-6xl font-bold text-white text-center py-14 font-bricolage">
             How&apos;s the sky looking today?
           </h1>
-          {/* Search */}
           <div className="flex sm:justify-center sm:pb-8 w-full">
             <Search />
           </div>
 
-          {/* Row 3: Main layout */}
+          {/* Desktop/Tablet Layout */}
           {/* Desktop/Tablet Layout */}
           <div className="hidden lg:grid grid-cols-3 gap-6">
-            {/* Left (col-span-2) */}
             <div className="col-span-2 grid grid-rows-[2fr_1fr] gap-6">
-              {/* Top */}
               <div>
                 <Main />
               </div>
 
-              <div className="rounded-2xl">
+              <div>
                 <WeatherDetails />
               </div>
 
-              {/* Bottom */}
-              <div className="bg-[#1e1e3f] p-4 rounded-2xl">
+              <div>
                 <DailyForecast />
               </div>
             </div>
 
-            {/* Right */}
             <div className="bg-[#1e1e3f] p-4 rounded-2xl">
               <HourlyForecast />
             </div>
@@ -53,22 +46,17 @@ export default function Home() {
 
           {/* Mobile/Tablet Layout */}
           <div className="lg:hidden space-y-6">
-            {/* Main */}
             <div>
               <Main />
             </div>
-
-            {/* Weather Details */}
-            <div className="rounded-2xl">
+            <div>
               <WeatherDetails />
             </div>
 
-            {/* Daily Forecast */}
-            <div className="bg-[#1e1e3f] p-4 rounded-2xl">
+            <div>
               <DailyForecast />
             </div>
 
-            {/* Hourly Forecast */}
             <div className="bg-[#1e1e3f] p-4 rounded-2xl">
               <HourlyForecast />
             </div>
@@ -76,9 +64,7 @@ export default function Home() {
         </div>
       </div>
       <footer className="flex gap-[24px] flex-wrap items-center justify-center py-8">
-        
         <div className="attribution text-center text-sm text-gray-600">
-          
           Challenge by
           <a
             href="https://www.frontendmentor.io"
@@ -86,7 +72,6 @@ export default function Home() {
             rel="noreferrer"
             className="underline"
           >
-            
             Frontend Mentor
           </a>
           . Coded by
@@ -96,7 +81,6 @@ export default function Home() {
             rel="noreferrer"
             className="underline"
           >
-            
             Nguyen Huu Huynh
           </a>
           .

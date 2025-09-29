@@ -22,7 +22,7 @@ export default function WeatherDetails() {
       {/* Precipitation */}
       <div className="bg-[#1e1e3f] rounded-xl px-4 py-5">
         <p className="text-lg opacity-80">Precipitation</p>
-        <p className="text-3xl mt-4">30%</p>
+        <p className="text-3xl mt-4">0 in</p>
       </div>
     </div>
   );

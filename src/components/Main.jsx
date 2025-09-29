@@ -52,7 +52,7 @@ export default function Main() {
           <img src="/icon-rain.webp" alt="weather icon" className="w-28 h-28" />
           <div className="text-right">
             <div className="text-9xl font-bold transform -skew-x-12">
-              68°
+              22°
             </div>
           </div>
         </div>
