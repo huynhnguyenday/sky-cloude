@@ -8,7 +8,7 @@ import HourlyForecast from "@/components/HourlyForecast";
 
 export default function Home() {
   return (
-    <div className="font-dmsans bg-[#01012b] text-white">
+    <div className="font-dmsans bg-[#01012b] text-white custom-scrollbar">
       <div className="px-8 pb-20 sm:px-20 py-10">
         <div className="space-y-8">
           <header className="flex items-center justify-between">
