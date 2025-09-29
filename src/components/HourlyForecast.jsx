@@ -43,7 +43,7 @@ export default function HourlyForecast() {
               src="/icon-dropdown.svg"
               alt="dropdown"
               className={`w-4 h-4 transition-transform ${
-                open ? "rotate-180" : "rotate-0"
+                isOpen ? "rotate-180" : "rotate-0"
               }`}
             />
           </button>
