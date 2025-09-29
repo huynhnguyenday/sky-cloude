@@ -39,7 +39,7 @@ export default function Home() {
               </div>
             </div>
 
-            <div className="bg-[#1e1e3f] p-4 rounded-2xl">
+            <div>
               <HourlyForecast />
             </div>
           </div>
@@ -57,7 +57,7 @@ export default function Home() {
               <DailyForecast />
             </div>
 
-            <div className="bg-[#1e1e3f] p-4 rounded-2xl">
+            <div>
               <HourlyForecast />
             </div>
           </div>

@@ -32,7 +32,7 @@ export default function Units() {
       {open && (
         <>
           <div className="absolute right-0 top-full w-full h-3 bg-transparent "></div>
-          <div className="absolute right-0 mt-3 w-60 rounded-md shadow-lg bg-[#25253e] p-3 text-sm z-10 border-[1px] border-gray-700 ">
+          <div className="absolute right-0 mt-3 w-60 rounded-xl shadow-lg bg-[#25253e] p-3 text-sm z-10 border-[1px] border-gray-700 ">
             <div className="px-1">
               <div>
                 <p

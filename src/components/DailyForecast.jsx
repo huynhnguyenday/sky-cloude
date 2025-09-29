@@ -10,7 +10,7 @@ export default function DailyForecast() {
         {days.map((day, idx) => (
           <div
             key={idx}
-            className="bg-[#1e1e3f] rounded-xl p-4 flex flex-col items-center"
+            className="bg-[#1e1e3f] rounded-xl p-4 flex flex-col items-center border-[1px] border-gray-700"
           >
             {/* Top - Day */}
             <p className="text-lg font-medium text-center">{day}</p>
