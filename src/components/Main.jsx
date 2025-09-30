@@ -1,7 +1,12 @@
 "use client";
 
+import Skeleton from "react-loading-skeleton";
+import "react-loading-skeleton/dist/skeleton.css";
+
 export default function Main({ weather, location }) {
-  const { city, country } = location;
+  const loading = !weather?.current;
+
+  const { city, country } = location || {};
 
   const temperature =
     weather?.current?.temperature_2m !== undefined
@@ -38,17 +43,25 @@ export default function Main({ weather, location }) {
   const weatherIcon = getWeatherIcon(weather?.current?.weather_code);
 
   return (
-    <div className="relative w-full h-[286px] rounded-2xl overflow-hidden">
-      <img
-        src="/bg-today-large.svg"
-        alt="background"
-        className="hidden md:block w-full h-full object-cover"
-      />
-      <img
-        src="/bg-today-small.svg"
-        alt="background"
-        className="block md:hidden w-full h-full object-cover"
-      />
+    <div
+      className={`relative w-full h-[286px] rounded-2xl overflow-hidden ${
+        loading ? "bg-[#1e1e3f]" : ""
+      }`}
+    >
+      {!loading && (
+        <>
+          <img
+            src="/bg-today-large.svg"
+            alt="background"
+            className="hidden md:block w-full h-full object-cover"
+          />
+          <img
+            src="/bg-today-small.svg"
+            alt="background"
+            className="block md:hidden w-full h-full object-cover"
+          />
+        </>
+      )}
 
       {/* Mobile Layout */}
       <div className="absolute inset-0 p-6 flex flex-col items-center justify-center md:hidden text-white text-center">
@@ -60,21 +73,51 @@ export default function Main({ weather, location }) {
             </h1>
           </div>
           <div className="text-base opacity-80">
-            <p>{formattedDate || "No date available"}</p>
+            {loading ? (
+              <Skeleton
+                width={180}
+                height={20}
+                baseColor="#2a2a4a"
+                highlightColor="#3b3b5c"
+                borderRadius={6}
+              />
+            ) : (
+              <p>{formattedDate || "No date available"}</p>
+            )}
           </div>
         </div>
 
         {/* Weather Info */}
         <div className="flex items-center justify-center gap-4">
-          <img
-            src={`/${weatherIcon}`}
-            alt="weather icon"
-            className="w-20 h-20"
-          />
+          {loading ? (
+            <Skeleton
+              circle
+              width={80}
+              height={80}
+              baseColor="#2a2a4a"
+              highlightColor="#3b3b5c"
+            />
+          ) : (
+            <img
+              src={`/${weatherIcon}`}
+              alt="weather icon"
+              className="w-20 h-20"
+            />
+          )}
+
           <div className="text-center">
-            <div className="text-7xl font-bold transform -skew-x-12">
-              {temperature !== undefined ? `${temperature}°` : "--°"}
-            </div>
+            {loading ? (
+              <Skeleton
+                width={100}
+                height={70}
+                baseColor="#2a2a4a"
+                highlightColor="#3b3b5c"
+              />
+            ) : (
+              <div className="text-7xl font-bold transform -skew-x-12">
+                {temperature !== undefined ? `${temperature}°` : "--°"}
+              </div>
+            )}
           </div>
         </div>
       </div>
@@ -89,21 +132,51 @@ export default function Main({ weather, location }) {
             </h1>
           </div>
           <div className="text-base opacity-80">
-            <p>{formattedDate || "No date available"}</p>
+            {loading ? (
+              <Skeleton
+                width={220}
+                height={20}
+                baseColor="#2a2a4a"
+                highlightColor="#3b3b5c"
+                borderRadius={6}
+              />
+            ) : (
+              <p>{formattedDate || "No date available"}</p>
+            )}
           </div>
         </div>
 
         {/* Right Section - Weather Info */}
         <div className="flex items-center gap-4">
-          <img
-            src={`/${weatherIcon}`}
-            alt="weather icon"
-            className="w-28 h-28"
-          />
+          {loading ? (
+            <Skeleton
+              circle
+              width={110}
+              height={110}
+              baseColor="#2a2a4a"
+              highlightColor="#3b3b5c"
+            />
+          ) : (
+            <img
+              src={`/${weatherIcon}`}
+              alt="weather icon"
+              className="w-32 h-32 md:w-36 md:h-36"
+            />
+          )}
+
           <div className="text-right">
-            <div className="text-9xl md:text-8xl font-bold transform -skew-x-12">
-              {temperature !== undefined ? `${temperature}°` : "--°"}
-            </div>
+            {loading ? (
+              <Skeleton
+                width={150}
+                height={90}
+                baseColor="#2a2a4a"
+                highlightColor="#3b3b5c"
+              />
+            ) : (
+              <div className="text-7xl xl:text-9xl font-bold transform -skew-x-12">
+                {temperature !== undefined ? `${temperature}°` : "--°"}
+              </div>
+            )}
           </div>
         </div>
       </div>
