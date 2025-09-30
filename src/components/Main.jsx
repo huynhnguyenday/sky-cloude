@@ -1,25 +1,41 @@
 "use client";
 
 export default function Main({ weather, location }) {
-   const { city, country } = location;
+  const { city, country } = location;
 
-   // Làm tròn nhiệt độ
-   const temperature =
-     weather?.current?.temperature_2m !== undefined
-       ? Math.round(weather.current.temperature_2m)
-       : undefined;
+  const temperature =
+    weather?.current?.temperature_2m !== undefined
+      ? Math.round(weather.current.temperature_2m)
+      : undefined;
 
-   const time = weather?.current?.time;
+  const time = weather?.current?.time;
 
-   // Format ngày: viết tắt tháng
-   const formattedDate = time
-     ? new Date(time).toLocaleDateString("en-US", {
-         weekday: "long",
-         year: "numeric",
-         month: "short",
-         day: "numeric",
-       })
-     : "";
+  const formattedDate = time
+    ? new Date(time).toLocaleDateString("en-US", {
+        weekday: "long",
+        year: "numeric",
+        month: "short",
+        day: "numeric",
+      })
+    : "";
+
+  function getWeatherIcon(code) {
+    if (!code && code !== 0) return "icon-sunny.webp";
+
+    if ([0].includes(code)) return "icon-sunny.webp"; // Clear sky
+    if ([1].includes(code)) return "icon-partly-cloudy.webp"; // Mainly clear
+    if ([2, 3].includes(code)) return "icon-overcast.webp"; // Cloudy/Overcast
+    if ([45, 48].includes(code)) return "icon-fog.webp"; // Fog
+    if ([51, 53, 55].includes(code)) return "icon-drizzle.webp"; // Drizzle
+    if ([61, 63, 65, 80, 81, 82].includes(code)) return "icon-rain.webp"; // Rain/Showers
+    if ([66, 67].includes(code)) return "icon-rain.webp"; // Freezing rain
+    if ([71, 73, 75, 77, 85, 86].includes(code)) return "icon-snow.webp"; // Snow
+    if ([95, 96, 99].includes(code)) return "icon-storm.webp"; // Thunderstorm
+
+    return "icon-sunny.webp"; // fallback
+  }
+
+  const weatherIcon = getWeatherIcon(weather?.current?.weather_code);
 
   return (
     <div className="relative w-full h-[286px] rounded-2xl overflow-hidden">
@@ -50,10 +66,13 @@ export default function Main({ weather, location }) {
 
         {/* Weather Info */}
         <div className="flex items-center justify-center gap-4">
-          <img src="/icon-rain.webp" alt="weather icon" className="w-20 h-20" />
+          <img
+            src={`/${weatherIcon}`}
+            alt="weather icon"
+            className="w-20 h-20"
+          />
           <div className="text-center">
             <div className="text-7xl font-bold transform -skew-x-12">
-              {" "}
               {temperature !== undefined ? `${temperature}°` : "--°"}
             </div>
           </div>
@@ -76,7 +95,11 @@ export default function Main({ weather, location }) {
 
         {/* Right Section - Weather Info */}
         <div className="flex items-center gap-4">
-          <img src="/icon-rain.webp" alt="weather icon" className="w-28 h-28" />
+          <img
+            src={`/${weatherIcon}`}
+            alt="weather icon"
+            className="w-28 h-28"
+          />
           <div className="text-right">
             <div className="text-9xl md:text-8xl font-bold transform -skew-x-12">
               {temperature !== undefined ? `${temperature}°` : "--°"}

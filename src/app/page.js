@@ -38,7 +38,7 @@ export default function Home() {
               </div>
 
               <div>
-                <WeatherDetails />
+                <WeatherDetails weather={weather} />
               </div>
 
               <div>
@@ -57,7 +57,7 @@ export default function Home() {
               <Main weather={weather} location={location} />
             </div>
             <div>
-              <WeatherDetails />
+              <WeatherDetails weather={weather} />
             </div>
 
             <div>

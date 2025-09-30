@@ -53,7 +53,6 @@ export default function Search({ setWeather, setLocation }) {
     const lat = item.lat;
     const lon = item.lon;
 
-    // 👉 chỉ lưu khi user chọn
     setLocation({ city, country, lat, lon });
 
     try {
@@ -63,7 +62,6 @@ export default function Search({ setWeather, setLocation }) {
       setWeather(null);
     }
   };
-
 
   return (
     <div className="space-y-4 w-full">
