@@ -1,6 +1,26 @@
 "use client";
 
-export default function Main() {
+export default function Main({ weather, location }) {
+   const { city, country } = location;
+
+   // Làm tròn nhiệt độ
+   const temperature =
+     weather?.current?.temperature_2m !== undefined
+       ? Math.round(weather.current.temperature_2m)
+       : undefined;
+
+   const time = weather?.current?.time;
+
+   // Format ngày: viết tắt tháng
+   const formattedDate = time
+     ? new Date(time).toLocaleDateString("en-US", {
+         weekday: "long",
+         year: "numeric",
+         month: "short",
+         day: "numeric",
+       })
+     : "";
+
   return (
     <div className="relative w-full h-[286px] rounded-2xl overflow-hidden">
       <img
@@ -19,10 +39,12 @@ export default function Main() {
         {/* City Info */}
         <div className="flex flex-col items-center mb-6">
           <div className="mb-2">
-            <h1 className="text-2xl font-bold">New York, United States</h1>
+            <h1 className="text-2xl font-bold">
+              {city && country ? `${city}, ${country}` : "Search a location"}
+            </h1>
           </div>
           <div className="text-base opacity-80">
-            <p>Monday, December 23, 2024</p>
+            <p>{formattedDate || "No date available"}</p>
           </div>
         </div>
 
@@ -30,7 +52,10 @@ export default function Main() {
         <div className="flex items-center justify-center gap-4">
           <img src="/icon-rain.webp" alt="weather icon" className="w-20 h-20" />
           <div className="text-center">
-            <div className="text-7xl font-bold transform -skew-x-12">20°</div>
+            <div className="text-7xl font-bold transform -skew-x-12">
+              {" "}
+              {temperature !== undefined ? `${temperature}°` : "--°"}
+            </div>
           </div>
         </div>
       </div>
@@ -40,10 +65,12 @@ export default function Main() {
         {/* Left Section - City Info */}
         <div className="flex flex-col">
           <div className="mb-2">
-            <h1 className="text-3xl font-bold">New York, United States</h1>
+            <h1 className="text-3xl font-bold">
+              {city && country ? `${city}, ${country}` : "Search a location"}
+            </h1>
           </div>
           <div className="text-base opacity-80">
-            <p>Monday, December 23, 2024</p>
+            <p>{formattedDate || "No date available"}</p>
           </div>
         </div>
 
@@ -52,7 +79,7 @@ export default function Main() {
           <img src="/icon-rain.webp" alt="weather icon" className="w-28 h-28" />
           <div className="text-right">
             <div className="text-9xl md:text-8xl font-bold transform -skew-x-12">
-              22°
+              {temperature !== undefined ? `${temperature}°` : "--°"}
             </div>
           </div>
         </div>

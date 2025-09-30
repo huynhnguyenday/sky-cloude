@@ -1,3 +1,6 @@
+"use client";
+
+import { useState } from "react";
 import Image from "next/image";
 import Units from "@/components/Units";
 import Search from "@/components/Search";
@@ -7,6 +10,9 @@ import DailyForecast from "@/components/DailyForecast";
 import HourlyForecast from "@/components/HourlyForecast";
 
 export default function Home() {
+  const [weather, setWeather] = useState(null); 
+  const [location, setLocation] = useState({ city: "", country: "" });
+
   return (
     <div className="font-dmsans bg-[#01012b] text-white custom-scrollbar">
       <div className="px-8 pb-20 sm:px-20 py-10">
@@ -15,18 +21,20 @@ export default function Home() {
             <Image src="/logo.svg" alt="Logo" width={200} height={80} />
             <Units />
           </header>
+
           <h1 className="text-6xl font-bold text-white text-center sm:py-14 py-6 font-bricolage">
             How&apos;s the sky looking today?
           </h1>
+
           <div className="flex sm:justify-center sm:pb-8 w-full">
-            <Search />
+            <Search setWeather={setWeather} setLocation={setLocation} />
           </div>
-          
+
           {/* Desktop/Tablet Layout */}
           <div className="hidden lg:grid grid-cols-3 gap-6">
             <div className="col-span-2 grid grid-rows-[2fr_1fr] gap-6">
               <div>
-                <Main />
+                <Main weather={weather} location={location} />
               </div>
 
               <div>
@@ -46,7 +54,7 @@ export default function Home() {
           {/* Mobile/Tablet Layout */}
           <div className="lg:hidden space-y-6">
             <div>
-              <Main />
+              <Main weather={weather} location={location} />
             </div>
             <div>
               <WeatherDetails />
