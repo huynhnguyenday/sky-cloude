@@ -47,7 +47,7 @@ export default function Home() {
             </div>
 
             <div>
-              <HourlyForecast />
+              <HourlyForecast weather={weather} />
             </div>
           </div>
 
@@ -65,7 +65,7 @@ export default function Home() {
             </div>
 
             <div>
-              <HourlyForecast />
+              <HourlyForecast weather={weather} />
             </div>
           </div>
         </div>
