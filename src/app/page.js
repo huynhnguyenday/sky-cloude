@@ -49,7 +49,13 @@ export default function Home() {
       <div className="px-8 pb-20 sm:px-20 py-10">
         <div className="space-y-8">
           <header className="flex items-center justify-between">
-            <Image src="/logo.svg" alt="Logo" width={200} height={80} />
+            <Image
+              src="/logo.svg"
+              alt="Logo"
+              width={200}
+              height={80}
+              style={{ width: "auto", height: "auto" }}
+            />
             <Units onUnitsChange={handleUnitsChange} />
           </header>
 
@@ -107,18 +113,9 @@ export default function Home() {
       </div>
       <footer className="flex gap-[24px] flex-wrap items-center justify-center py-8">
         <div className="attribution text-center text-sm text-gray-600">
-          Challenge by
+          Coded by
           <a
-            href="https://www.frontendmentor.io"
-            target="_blank"
-            rel="noreferrer"
-            className="underline"
-          >
-            Frontend Mentor
-          </a>
-          . Coded by
-          <a
-            href="https://github.com/huynhnguyenday"
+            href="https://huynh.vercel.app/"
             target="_blank"
             rel="noreferrer"
             className="underline"
