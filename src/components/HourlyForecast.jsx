@@ -60,7 +60,6 @@ export default function HourlyForecast({ weather }) {
 
   const { time, temperature_2m, weather_code } = weather.hourly;
 
-  // group hours theo ngày
   const groupedByDay = time.reduce((acc, t, idx) => {
     const date = new Date(t);
     const dayName = date.toLocaleDateString("en-US", { weekday: "long" });
@@ -98,7 +97,9 @@ export default function HourlyForecast({ weather }) {
     <div className="bg-[#1e1e3f] rounded-2xl p-6 text-white h-[685px] flex flex-col relative">
       {/* Header */}
       <div className="flex items-center justify-between mb-4 relative">
-        <h2 className="text-xl">Hourly forecast</h2>
+        <h2 className="text-lg md:text-xl lg:text-xl">
+          Hourly forecast
+        </h2>
 
         {/* Dropdown button */}
         <div className="relative">
