@@ -68,3 +68,29 @@ body::-webkit-scrollbar-corner,
 .custom-scrollbar::-webkit-scrollbar-corner {
   background: #1a1a36;
 }
+
+.search-scrollbar::-webkit-scrollbar {
+  width: 4px;
+  background: transparent;
+}
+
+.search-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+  border-radius: 12px;
+  margin: 4px;
+}
+
+.search-scrollbar::-webkit-scrollbar-thumb {
+  background: linear-gradient(135deg, #4a4a7a 60%, #6a6ab0 100%);
+  border-radius: 12px;
+  border: none;
+  transition: background 0.3s;
+}
+
+.search-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(135deg, #6a6ab0 60%, #8a8ac0 100%);
+}
+
+.search-scrollbar::-webkit-scrollbar-corner {
+  background: transparent;
+}

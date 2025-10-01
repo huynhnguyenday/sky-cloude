@@ -114,7 +114,7 @@ export default function Search({ setWeather, setLocation, units = {} }) {
           />
 
           {isOpen && (
-            <div className="px-2 absolute top-full left-0 right-0 mt-2 bg-[#1e1e3f] rounded-xl shadow-lg border border-gray-700 z-10 h-[175px] overflow-y-auto custom-scrollbar">
+            <div className="px-2 absolute top-full left-0 right-0 mt-2 bg-[#1e1e3f] rounded-xl shadow-lg border border-gray-700 z-10 h-[175px] overflow-y-auto search-scrollbar">
               <div className="p-2">
                 {searchValue.trim() !== "" ? (
                   <>
