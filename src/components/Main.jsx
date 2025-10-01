@@ -2,16 +2,15 @@
 
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
+import { formatTemperature } from "@/utils/units";
 
-export default function Main({ weather, location }) {
+export default function Main({ weather, location, units = {} }) {
   const loading = !weather?.current;
 
   const { city, country } = location || {};
 
-  const temperature =
-    weather?.current?.temperature_2m !== undefined
-      ? Math.round(weather.current.temperature_2m)
-      : undefined;
+  const temperature = weather?.current?.temperature_2m;
+  const formattedTemp = formatTemperature(temperature, units.temperature);
 
   const time = weather?.current?.time;
 
@@ -115,7 +114,7 @@ export default function Main({ weather, location }) {
               />
             ) : (
               <div className="text-7xl font-bold transform -skew-x-12">
-                {temperature !== undefined ? `${temperature}°` : "--°"}
+                {formattedTemp}
               </div>
             )}
           </div>
@@ -128,7 +127,7 @@ export default function Main({ weather, location }) {
         <div className="flex flex-col">
           <div className="mb-2">
             <h1 className="text-3xl font-bold">
-              {city && country ? `${city}, ${country}` : "Search a location"}
+              {city && country ? `${city}, ${country}` : "Search a location first."}
             </h1>
           </div>
           <div className="text-base opacity-80">
@@ -174,7 +173,7 @@ export default function Main({ weather, location }) {
               />
             ) : (
               <div className="text-7xl xl:text-9xl font-bold transform -skew-x-12">
-                {temperature !== undefined ? `${temperature}°` : "--°"}
+                {formattedTemp}
               </div>
             )}
           </div>

@@ -3,8 +3,9 @@
 import { useState } from "react";
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
+import { formatTemperature } from "@/utils/units";
 
-export default function HourlyForecast({ weather }) {
+export default function HourlyForecast({ weather, units = {} }) {
   const [isOpen, setIsOpen] = useState(false);
   const [selectedDay, setSelectedDay] = useState("Today");
 
@@ -70,7 +71,7 @@ export default function HourlyForecast({ weather }) {
         hour: "numeric",
         hour12: true,
       }),
-      temp: `${Math.round(temperature_2m[idx])}°`,
+      temp: formatTemperature(temperature_2m[idx], units.temperature),
       icon: getWeatherIcon(weather_code[idx]),
     });
     return acc;
@@ -97,9 +98,7 @@ export default function HourlyForecast({ weather }) {
     <div className="bg-[#1e1e3f] rounded-2xl p-6 text-white h-[685px] flex flex-col relative">
       {/* Header */}
       <div className="flex items-center justify-between mb-4 relative">
-        <h2 className="text-lg md:text-xl lg:text-xl">
-          Hourly forecast
-        </h2>
+        <h2 className="text-lg md:text-xl lg:text-xl">Hourly forecast</h2>
 
         {/* Dropdown button */}
         <div className="relative">

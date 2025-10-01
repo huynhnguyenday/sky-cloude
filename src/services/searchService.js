@@ -15,7 +15,18 @@ export async function searchLocation(query, limit = 5) {
   return data;
 }
 
-export async function getWeather(lat, lon) {
+export async function getWeather(lat, lon, units = {}) {
+  const {
+    temperature = "celsius",
+    windSpeed = "kmh",
+    precipitation = "mm",
+  } = units;
+
+  // Chuyển đổi units cho API
+  const tempUnit = temperature === "fahrenheit" ? "fahrenheit" : "celsius";
+  const windUnit = windSpeed === "mph" ? "mph" : "kmh";
+  const precipUnit = precipitation === "in" ? "inch" : "mm";
+
   const params = new URLSearchParams({
     latitude: lat,
     longitude: lon,
@@ -23,11 +34,13 @@ export async function getWeather(lat, lon) {
     hourly: "temperature_2m,weather_code",
     current:
       "temperature_2m,relative_humidity_2m,precipitation,wind_speed_10m,apparent_temperature,weather_code",
+    temperature_unit: tempUnit,
+    windspeed_unit: windUnit,
+    precipitation_unit: precipUnit,
   });
   const url = `${WEATHER_BASE_URL}?${params.toString()}`;
   const res = await fetch(url);
   if (!res.ok) throw new Error("Weather API error");
   const data = await res.json();
-  console.log("getWeather data:", data); // Log kết quả trả về
   return data;
 }

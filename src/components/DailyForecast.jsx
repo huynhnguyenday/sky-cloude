@@ -2,8 +2,9 @@
 
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
+import { formatTemperature } from "@/utils/units";
 
-export default function DailyForecast({ weather }) {
+export default function DailyForecast({ weather, units = {} }) {
   const loading = !weather?.daily;
 
   const { time, temperature_2m_max, temperature_2m_min, weather_code } =
@@ -91,10 +92,16 @@ export default function DailyForecast({ weather }) {
                 ) : (
                   <>
                     <span className="text-start">
-                      {Math.round(temperature_2m_max[idx])}°
+                      {formatTemperature(
+                        temperature_2m_max[idx],
+                        units.temperature
+                      )}
                     </span>
                     <span className="text-end">
-                      {Math.round(temperature_2m_min[idx])}°
+                      {formatTemperature(
+                        temperature_2m_min[idx],
+                        units.temperature
+                      )}
                     </span>
                   </>
                 )}

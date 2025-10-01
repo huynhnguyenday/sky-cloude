@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 
-export default function Units() {
+export default function Units({ onUnitsChange }) {
   const [open, setOpen] = useState(false);
 
   // State cho các lựa chọn
@@ -10,6 +10,13 @@ export default function Units() {
   const [windSpeed, setWindSpeed] = useState("kmh");
   const [precipitation, setPrecipitation] = useState("mm");
   const [isImperial, setIsImperial] = useState(false);
+
+  // Gửi units lên parent component khi có thay đổi
+  const notifyUnitsChange = (newUnits) => {
+    if (onUnitsChange) {
+      onUnitsChange(newUnits);
+    }
+  };
 
   return (
     <div
@@ -37,7 +44,34 @@ export default function Units() {
               <div>
                 <p
                   className="text-white py-2 cursor-pointer hover:bg-[#2f2f49] hover:-mx-2 hover:px-2 hover:rounded-lg "
-                  onClick={() => setIsImperial(!isImperial)}
+                  onClick={() => {
+                    const newIsImperial = !isImperial;
+                    setIsImperial(newIsImperial);
+
+                    // Tự động chuyển đổi tất cả units khi chuyển Metric/Imperial
+                    let newTemperature, newWindSpeed, newPrecipitation;
+                    if (newIsImperial) {
+                      newTemperature = "fahrenheit";
+                      newWindSpeed = "mph";
+                      newPrecipitation = "in";
+                    } else {
+                      newTemperature = "celsius";
+                      newWindSpeed = "kmh";
+                      newPrecipitation = "mm";
+                    }
+
+                    setTemperature(newTemperature);
+                    setWindSpeed(newWindSpeed);
+                    setPrecipitation(newPrecipitation);
+
+                    // Gửi units mới lên parent
+                    notifyUnitsChange({
+                      temperature: newTemperature,
+                      windSpeed: newWindSpeed,
+                      precipitation: newPrecipitation,
+                      isImperial: newIsImperial,
+                    });
+                  }}
                 >
                   {isImperial ? "Switch to Metric" : "Switch to Imperial"}
                 </p>
@@ -52,7 +86,15 @@ export default function Units() {
                           ? "bg-[#2f2f49] -mx-2 px-2 rounded-lg"
                           : ""
                       }`}
-                      onClick={() => setTemperature("celsius")}
+                      onClick={() => {
+                        setTemperature("celsius");
+                        notifyUnitsChange({
+                          temperature: "celsius",
+                          windSpeed,
+                          precipitation,
+                          isImperial,
+                        });
+                      }}
                     >
                       <span>Celsius (°C)</span>
                       {temperature === "celsius" && (
@@ -72,7 +114,15 @@ export default function Units() {
                           ? "bg-[#2f2f49] -mx-2 px-2 rounded-lg"
                           : ""
                       }`}
-                      onClick={() => setTemperature("fahrenheit")}
+                      onClick={() => {
+                        setTemperature("fahrenheit");
+                        notifyUnitsChange({
+                          temperature: "fahrenheit",
+                          windSpeed,
+                          precipitation,
+                          isImperial,
+                        });
+                      }}
                     >
                       <span>Fahrenheit (°F)</span>
                       {temperature === "fahrenheit" && (
@@ -97,7 +147,15 @@ export default function Units() {
                           ? "bg-[#2f2f49] -mx-2 px-2 rounded-lg"
                           : ""
                       }`}
-                      onClick={() => setWindSpeed("kmh")}
+                      onClick={() => {
+                        setWindSpeed("kmh");
+                        notifyUnitsChange({
+                          temperature,
+                          windSpeed: "kmh",
+                          precipitation,
+                          isImperial,
+                        });
+                      }}
                     >
                       <span>km/h</span>
                       {windSpeed === "kmh" && (
@@ -117,7 +175,15 @@ export default function Units() {
                           ? "bg-[#2f2f49] -mx-2 px-2 rounded-lg"
                           : ""
                       }`}
-                      onClick={() => setWindSpeed("mph")}
+                      onClick={() => {
+                        setWindSpeed("mph");
+                        notifyUnitsChange({
+                          temperature,
+                          windSpeed: "mph",
+                          precipitation,
+                          isImperial,
+                        });
+                      }}
                     >
                       <span>mph</span>
                       {windSpeed === "mph" && (
@@ -142,7 +208,15 @@ export default function Units() {
                           ? "bg-[#2f2f49] -mx-2 px-2 rounded-lg"
                           : ""
                       }`}
-                      onClick={() => setPrecipitation("mm")}
+                      onClick={() => {
+                        setPrecipitation("mm");
+                        notifyUnitsChange({
+                          temperature,
+                          windSpeed,
+                          precipitation: "mm",
+                          isImperial,
+                        });
+                      }}
                     >
                       <span>Millimeters (mm)</span>
                       {precipitation === "mm" && (
@@ -162,7 +236,15 @@ export default function Units() {
                           ? "bg-[#2f2f49] -mx-2 px-2 rounded-lg"
                           : ""
                       }`}
-                      onClick={() => setPrecipitation("in")}
+                      onClick={() => {
+                        setPrecipitation("in");
+                        notifyUnitsChange({
+                          temperature,
+                          windSpeed,
+                          precipitation: "in",
+                          isImperial,
+                        });
+                      }}
                     >
                       <span>Inches (in)</span>
                       {precipitation === "in" && (

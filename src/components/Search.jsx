@@ -6,7 +6,7 @@ import Lottie from "lottie-react";
 import "react-loading-skeleton/dist/skeleton.css";
 import { searchLocation, getWeather } from "@/services/searchService";
 
-export default function Search({ setWeather, setLocation }) {
+export default function Search({ setWeather, setLocation, units = {} }) {
   const [isOpen, setIsOpen] = useState(false);
   const [searchValue, setSearchValue] = useState("");
   const [suggestions, setSuggestions] = useState([]);
@@ -86,7 +86,7 @@ export default function Search({ setWeather, setLocation }) {
     setLocation({ city, country, lat, lon });
 
     try {
-      const weatherData = await getWeather(lat, lon);
+      const weatherData = await getWeather(lat, lon, units);
       setWeather(weatherData);
     } catch {
       setWeather(null);

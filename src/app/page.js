@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect, useCallback } from "react";
 import Image from "next/image";
 import Units from "@/components/Units";
 import Search from "@/components/Search";
@@ -8,10 +8,41 @@ import Main from "@/components/Main";
 import WeatherDetails from "@/components/WeatherDetails";
 import DailyForecast from "@/components/DailyForecast";
 import HourlyForecast from "@/components/HourlyForecast";
+import { getWeather } from "@/services/searchService";
 
 export default function Home() {
-  const [weather, setWeather] = useState(null); 
+  const [weather, setWeather] = useState(null);
   const [location, setLocation] = useState({ city: "", country: "" });
+  const [units, setUnits] = useState({
+    temperature: "celsius",
+    windSpeed: "kmh",
+    precipitation: "mm",
+    isImperial: false,
+  });
+
+  const handleUnitsChange = useCallback((newUnits) => {
+    setUnits(newUnits);
+  }, []);
+
+  // Gọi lại API khi units thay đổi và đã có location
+  useEffect(() => {
+    const fetchWeatherWithNewUnits = async () => {
+      if (location.lat && location.lon) {
+        try {
+          const weatherData = await getWeather(
+            location.lat,
+            location.lon,
+            units
+          );
+          setWeather(weatherData);
+        } catch (error) {
+          console.error("Error fetching weather with new units:", error);
+        }
+      }
+    };
+
+    fetchWeatherWithNewUnits();
+  }, [units, location.lat, location.lon]);
 
   return (
     <div className="font-dmsans bg-[#01012b] text-white custom-scrollbar">
@@ -19,7 +50,7 @@ export default function Home() {
         <div className="space-y-8">
           <header className="flex items-center justify-between">
             <Image src="/logo.svg" alt="Logo" width={200} height={80} />
-            <Units />
+            <Units onUnitsChange={handleUnitsChange} />
           </header>
 
           <h1 className="text-6xl font-bold text-white text-center sm:py-14 py-6 font-bricolage">
@@ -27,45 +58,49 @@ export default function Home() {
           </h1>
 
           <div className="flex sm:justify-center sm:pb-8 w-full">
-            <Search setWeather={setWeather} setLocation={setLocation} />
+            <Search
+              setWeather={setWeather}
+              setLocation={setLocation}
+              units={units}
+            />
           </div>
 
           {/* Desktop/Tablet Layout */}
           <div className="hidden lg:grid grid-cols-3 gap-6">
             <div className="col-span-2 grid grid-rows-[2fr_1fr] gap-6">
               <div>
-                <Main weather={weather} location={location} />
+                <Main weather={weather} location={location} units={units} />
               </div>
 
               <div>
-                <WeatherDetails weather={weather} />
+                <WeatherDetails weather={weather} units={units} />
               </div>
 
               <div>
-                <DailyForecast weather={weather} />
+                <DailyForecast weather={weather} units={units} />
               </div>
             </div>
 
             <div>
-              <HourlyForecast weather={weather} />
+              <HourlyForecast weather={weather} units={units} />
             </div>
           </div>
 
           {/* Mobile/Tablet Layout */}
           <div className="lg:hidden space-y-6">
             <div>
-              <Main weather={weather} location={location} />
+              <Main weather={weather} location={location} units={units} />
             </div>
             <div>
-              <WeatherDetails weather={weather} />
-            </div>
-
-            <div>
-              <DailyForecast weather={weather} />
+              <WeatherDetails weather={weather} units={units} />
             </div>
 
             <div>
-              <HourlyForecast weather={weather} />
+              <DailyForecast weather={weather} units={units} />
+            </div>
+
+            <div>
+              <HourlyForecast weather={weather} units={units} />
             </div>
           </div>
         </div>

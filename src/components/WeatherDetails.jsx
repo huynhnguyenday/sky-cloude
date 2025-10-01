@@ -2,8 +2,13 @@
 
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
+import {
+  formatTemperature,
+  formatWindSpeed,
+  formatPrecipitation,
+} from "@/utils/units";
 
-export default function WeatherDetails({ weather }) {
+export default function WeatherDetails({ weather, units = {} }) {
   const loading = !weather?.current;
 
   const {
@@ -16,18 +21,12 @@ export default function WeatherDetails({ weather }) {
   const details = [
     {
       label: "Feels Like",
-      value:
-        apparent_temperature !== undefined
-          ? `${Math.round(apparent_temperature)}°`
-          : null,
+      value: formatTemperature(apparent_temperature, units.temperature),
       skeletonWidth: 80,
     },
     {
       label: "Wind",
-      value:
-        wind_speed_10m !== undefined
-          ? `${Math.round(wind_speed_10m)} km/h`
-          : null,
+      value: formatWindSpeed(wind_speed_10m, units.windSpeed),
       skeletonWidth: 100,
     },
     {
@@ -35,12 +34,12 @@ export default function WeatherDetails({ weather }) {
       value:
         relative_humidity_2m !== undefined
           ? `${Math.round(relative_humidity_2m)}%`
-          : null,
+          : "--",
       skeletonWidth: 70,
     },
     {
       label: "Precipitation",
-      value: precipitation !== undefined ? `${precipitation} mm` : null,
+      value: formatPrecipitation(precipitation, units.precipitation),
       skeletonWidth: 90,
     },
   ];
@@ -76,7 +75,7 @@ export default function WeatherDetails({ weather }) {
                 borderRadius={6}
               />
             ) : (
-              <p className="md:text-2xl text-3xl">{item.value ?? "--"}</p>
+              <p className="md:text-2xl text-3xl">{item.value}</p>
             )}
           </div>
         </div>
