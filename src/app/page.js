@@ -44,6 +44,18 @@ export default function Home() {
     fetchWeatherWithNewUnits();
   }, [units, location.lat, location.lon]);
 
+  
+  useEffect(() => {
+    if (!location.lat && !location.lon && !weather) {
+      setLocation({
+        city: "Thành phố Hồ Chí Minh",
+        country: "Việt Nam",
+        lat: 10.8231,
+        lon: 106.6297,
+      });
+    }
+  }, [location.lat, location.lon, weather, setLocation]);
+
   return (
     <div className="font-dmsans bg-[#01012b] text-white custom-scrollbar">
       <div className="px-8 pb-20 sm:px-20 py-10">
